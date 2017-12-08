@@ -29,7 +29,8 @@
           "250          webm       audio only DASH audio   78k , opus @ 70k, 11.24MiB",
           "140          m4a        audio only DASH audio  129k , m4a_dash container, mp4a.40.2@128k (44100Hz), 22.50MiB",
           "171          webm       audio only DASH audio  130k , vorbis@128k, 19.27MiB",
-          "251          webm       audio only DASH audio  151k , opus @160k, 22.13MiB"
+          "251          webm       audio only DASH audio  151k , opus @160k, 22.13MiB",
+          "1          webm       audio only DASH audio  151k , opus @160k, 22.13MiB"
         ],
         "other": [
           "---",
@@ -70,7 +71,8 @@
           "250          webm       audio only DASH audio   77k , opus @ 70k, 10.97MiB",
           "171          webm       audio only DASH audio  123k , vorbis@128k, 18.64MiB",
           "140          m4a        audio only DASH audio  129k , m4a_dash container, mp4a.40.2@128k (44100Hz), 22.33MiB",
-          "251          webm       audio only DASH audio  143k , opus @160k, 21.25MiB"
+          "251          webm       audio only DASH audio  143k , opus @160k, 21.25MiB",
+          "2          webm       audio only DASH audio  151k , opus @160k, 22.13MiB"
         ],
         "other": [
           "---",
@@ -111,7 +113,8 @@
           "250          webm       audio only DASH audio   76k , opus @ 70k, 1.25MiB",
           "140          m4a        audio only DASH audio  128k , m4a_dash container, mp4a.40.2@128k (44100Hz), 2.38MiB",
           "251          webm       audio only DASH audio  144k , opus @160k, 2.45MiB",
-          "171          webm       audio only DASH audio  144k , vorbis@128k, 2.48MiB"
+          "171          webm       audio only DASH audio  144k , vorbis@128k, 2.48MiB",
+          "3          webm       audio only DASH audio  151k , opus @160k, 22.13MiB"
         ],
         "other": [
           "---",
@@ -119,7 +122,7 @@
           "36           3gp        320x180    small , mp4v.20.3,  mp4a.40.2",
           "43           webm       640x360    medium , vp8.0,  vorbis@128k",
           "18           mp4        640x360    medium , avc1.42001E,  mp4a.40.2@ 96k",
-          "22           mp4        1280x720   hd720 , avc1.64001F,  mp4a.40.2@192k (best)"
+          "2233           mp4        1280x720   hd720 , avc1.64001F,  mp4a.40.2@192k (best)"
         ]
       }
     },
@@ -150,7 +153,8 @@
           "250          webm       audio only DASH audio   59k , opus @ 70k, 1.28MiB",
           "171          webm       audio only DASH audio   87k , vorbis@128k, 1.69MiB",
           "140          m4a        audio only DASH audio  127k , m4a_dash container, mp4a.40.2@128k (44100Hz), 3.04MiB",
-          "251          webm       audio only DASH audio  148k , opus @160k, 3.39MiB"
+          "251          webm       audio only DASH audio  148k , opus @160k, 3.39MiB",
+          "4          webm       audio only DASH audio  151k , opus @160k, 22.13MiB"
         ],
         "other": [
           "---",
@@ -158,7 +162,7 @@
           "36           3gp        320x180    small , mp4v.20.3,  mp4a.40.2",
           "43           webm       640x360    medium , vp8.0,  vorbis@128k",
           "18           mp4        640x360    medium , avc1.42001E,  mp4a.40.2@ 96k",
-          "22           mp4        1280x720   hd720 , avc1.64001F,  mp4a.40.2@192k (best)"
+          "2244           mp4        1280x720   hd720 , avc1.64001F,  mp4a.40.2@192k (best)"
         ]
       }
     }

@@ -20,9 +20,9 @@ class Model(QAbstractTableModel):
             # print(json.dumps(data, indent=2))
             # print(data["items"][0])
             for el in data["items"]:
-                # print(el)
-                # el = data["items"][0]
-                self._data.append([el["title"], el["video"], el["audio"], '0%', el["url"], [],])
+                print(el["formats"])
+                print("\n\n")
+                self._data.append([el["title"], el["video"], el["audio"], '0%', el["url"], el["formats"],])
 
         # state = { 'items': request.json['items'] }
         # with open('yd.json', mode='w', encoding='utf-8') as f:
@@ -59,6 +59,9 @@ class Model(QAbstractTableModel):
 
     def getFormatsByIdx(self, idx):
         return self._data[idx][1] + "+" + self._data[idx][2]
+
+    def getListOfFormatsByIdx(self, idx):
+        return self._data[idx][5]
 
     def getUrlByIdx(self, idx):
         return self._data[idx][4]

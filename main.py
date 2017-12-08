@@ -11,9 +11,9 @@ import threading
 
 from PyQt5.QtCore import QCoreApplication, QBasicTimer, Qt
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, QSplitter
+from PyQt5.QtWidgets import QAction, QSplitter, QComboBox, QLabel
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
-from PyQt5.QtWidgets import QTableView, QAbstractItemView, QTabWidget
+from PyQt5.QtWidgets import QTableView, QTableWidget, QTableWidgetItem, QAbstractItemView, QTabWidget
 from PyQt5.QtWidgets import QVBoxLayout
 
 import AddDlg
@@ -38,6 +38,7 @@ class MainWindow(QMainWindow):
 
         self.setMenu()
 
+        # List of downloads
         self.table = QTableView(self)
         self.model = tmodel.Model(self.table)
         self.table.setModel(self.model)
@@ -46,13 +47,38 @@ class MainWindow(QMainWindow):
         # selectionModel = self.table.selectionModel()
         self.table.selectionModel().currentChanged.connect(self.currentChangedTable)
 
-        self.listWidget = DlListWidget.DlListWidget()
-        self.listWidget.itemClicked.connect(self.listWidget.Clicked)
-        self.listWidget.currentItemChanged.connect(self.listWidget.itemChanged)
+        # List of formats
+        self.cbVideo = QComboBox()
+        self.cbAudio = QComboBox()
+        self.cbOther = QComboBox()
+        self.cbVideo.activated.connect(self.videoChange)
+        self.cbAudio.activated.connect(self.audioChange)
+        self.cbOther.activated.connect(self.otherChange)
 
+        self.tblFormats = QTableWidget() #(self)
+        self.tblFormats.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tblFormats.setColumnCount(2)
+        self.tblFormats.setRowCount(2)
+        self.tblFormats.setHorizontalHeaderLabels(["id", "Format"])
+
+        layout1 = QVBoxLayout()
+        layout1.addWidget(QLabel("Video:"))
+        layout1.addWidget(self.cbVideo)
+        layout1.addWidget(QLabel("Audio:"))
+        layout1.addWidget(self.cbAudio)
+        layout1.addWidget(QLabel("Video+Audio:"))
+        layout1.addWidget(self.cbOther)
+        # layout1.addWidget(self.tblFormats)
+
+        # Tabs
         self._tabs = QTabWidget()
-        self._tabs.addTab(self.listWidget, "Formats")
+        self.tab1 = QWidget()   
+        # self.tab2 = QWidget()
+        self.tab1.setLayout(layout1)
+        self._tabs.addTab(self.tab1, "Formats")
+        # self._tabs.addTab(self.tab2, "Settings")
 
+        # Splitter
         vsplitter = QSplitter(Qt.Vertical)
         vsplitter.addWidget(self.table)
         vsplitter.addWidget(self._tabs)
@@ -177,8 +203,41 @@ class MainWindow(QMainWindow):
         pass
 
     def currentChangedTable(self, current, previous):
-        self.selectedIdx = current.row()
         # print("--->>> itemChanged ", current.row(), " % ", current.data())
+        self.selectedIdx = current.row()
+        self.tblFormats.setRowCount(10)
+
+        formats = self.model.getListOfFormatsByIdx(self.selectedIdx)
+        for i, f in enumerate(formats["video"]):
+    	    format = formats["video"][i]
+    	    self.tblFormats.setItem(i,0, QTableWidgetItem("video"))
+    	    self.tblFormats.setItem(i,1, QTableWidgetItem(format))
+
+        self.tblFormats.resizeColumnsToContents()
+
+        self.cbVideo.clear()
+        for i, f in enumerate(formats["video"]):
+            format = formats["video"][i]
+            self.cbVideo.addItem(format)
+
+        self.cbAudio.clear()
+        for i, f in enumerate(formats["audio"]):
+            format = formats["audio"][i]
+            self.cbAudio.addItem(format)
+
+        self.cbOther.clear()
+        for i, f in enumerate(formats["other"]):
+            format = formats["other"][i]
+            self.cbOther.addItem(format)
+
+    def videoChange(self,i):
+        print("Items in the list are : videoChange")
+
+    def audioChange(self,i):
+        print("Items in the list are : audioChange")
+
+    def otherChange(self,i):
+        print("Items in the list are : otherChange")
 
     def timerEvent(self, e):
         while not self.q.empty():
