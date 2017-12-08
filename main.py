@@ -232,6 +232,7 @@ class MainWindow(QMainWindow):
 
     def videoChange(self,i):
         print("Items in the list are : videoChange")
+        self.model.save()
 
     def audioChange(self,i):
         print("Items in the list are : audioChange")

@@ -24,9 +24,11 @@ class Model(QAbstractTableModel):
                 print("\n\n")
                 self._data.append([el["title"], el["video"], el["audio"], '0%', el["url"], el["formats"],])
 
-        # state = { 'items': request.json['items'] }
-        # with open('yd.json', mode='w', encoding='utf-8') as f:
-        #     json.dump(state, f, indent=2)
+    
+    def save(self):
+        state = { 'items': self._data }
+        with open('yd-new.json', mode='w', encoding='utf-8') as f:
+            json.dump(state, f, indent=2)
 
     def rowCount(self, parent):
         return len(self._data)
